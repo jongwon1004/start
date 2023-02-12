@@ -62,7 +62,7 @@
       form.attr("action", "<c:url value='/board/modify'/>");
       form.attr("method", "post");
       form.submit();
-      location.href = "<c:url value='/board/list'/>?page=${page}&pageSize=${pageSize}";
+      <%--location.href = "<c:url value='/board/list'/>?page=${page}&pageSize=${pageSize}";--%>
     });
 
     $('#removeBtn').on("click",function (){

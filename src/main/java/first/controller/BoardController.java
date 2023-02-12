@@ -38,14 +38,14 @@ public class BoardController {
                 throw new Exception("Modify failed");
 
             m.addAttribute("msg", "MOD_OK");
-//            rattr.addFlashAttribute("msg", "MOD_OK");
+            rattr.addFlashAttribute("msg", "MOD_OK");
             return "redirect:/board/list";
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(boardDto);
-            m.addAttribute("page", page);
-            m.addAttribute("pageSize", pageSize);
-//            rattr.addAttribute("msg", "MOD_ERR");
+            rattr.addAttribute("page", page);
+            rattr.addAttribute("pageSize", pageSize);
+            rattr.addAttribute("msg", "MOD_ERR");
             return "board";
         }
     }
