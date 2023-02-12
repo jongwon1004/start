@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="first.dao.BoardMapper">
+    <!-- 지정한 게시물 번호의 게시물을 가져옴 -->
+    <select id="select" parameterType="int" resultType="BoardDto">
+        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
+        FROM board
+        WHERE bno = #{bno}
+    </select>
+
+    <!-- 등록된 모든 게시물을 가져옴, 등록일 역순, 게시물번호 역순 -->
+    <select id="selectAll" resultType="BoardDto">
+        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
+        FROM board
+        ORDER BY reg_date DESC , bno DESC
+    </select>
+
+    <!-- 게시물 저장 제목,내용,작성자를 담은 BoardDto를 매개변수로 넘겨줌  -->
+    <select id="insert" parameterType="BoardDto">
+        INSERT INTO board
+            (title, content, writer)
+        VALUES (#{title},#{content},#{writer})
+    </select>
+    
+    
+    <!-- 모든 게시물 삭제 -->
+    <select id="deleteAll">
+        DELETE FROM board
+    </select>
+
+
+    <!-- 삭제할때는 게시물 번호와 작성자 이름이 일치해야 삭제 -->
+    <select id="delete" parameterType="map">
+        DELETE FROM board WHERE bno = #{bno} and writer = #{writer}
+    </select>
+
+
+    <!-- 전체 게시물의 갯수 -->
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM board;
+    </select>
+
+    <!-- 변경,갱신한 BoardDto를 매개변수로 넘겨줘서 기존의 게시물을 update -->
+    <select id="update" parameterType="BoardDto">
+        UPDATE board
+        SET title = #{title}, content = #{content}, up_date = NOW()
+        WHERE bno = #{bno} AND writer = #{writer}
+    </select>
+    
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE board
+        SET view_cnt = view_cnt + 1
+        WHERE bno = #{bno}
+    </update>
+
+    <select id="selectPage" parameterType="map" resultType="BoardDto">
+        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
+        FROM board
+        ORDER BY reg_date DESC, bno DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+
+
+</mapper>

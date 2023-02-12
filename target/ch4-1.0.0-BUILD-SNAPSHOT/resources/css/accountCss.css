@@ -1,0 +1,41 @@
+h1 {
+    text-align: center;
+    height: 70px;
+    margin-top: 40px;
+}
+
+.item-text {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.item-text .name {
+    text-align: left;
+}
+
+.item-text .text-all input {
+    position: relative;
+    width: 400px;
+    height: 40px;
+}
+
+body {
+    background-color: rgba(252, 255, 255, 0.842);
+}
+
+
+.account-box {
+    background-color: rgb(127, 139, 194);
+    width: 406px;
+    height: 40px;
+    margin-top: 25px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.login-page {
+    display: block;
+    width: 1490px;
+    margin: 170px auto;
+}
